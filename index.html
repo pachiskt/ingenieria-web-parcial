@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>Wallet G+ MVP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap">
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <!-- ================= 1. PANTALLA DE LOGIN ================= -->
+    <div id="vista-login" class="pantalla-completa">
+        <div class="caja-login bloque">
+            <h1 class="logo-login"><strong>WALLET</strong> G+</h1>
+            <h2>Iniciar Sesión</h2>
+            <p class="texto-ayuda">Usa: admin@wallet.com / 123456</p>
+            <form id="form-login">
+                <div class="grupo-input">
+                    <label>Correo electrónico</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="grupo-input">
+                    <label>Contraseña</label>
+                    <input type="password" id="login-pass" required>
+                </div>
+                <p id="error-login" class="texto-gasto oculto">Credenciales incorrectas</p>
+                <button type="submit" class="boton-agregar w-100">Entrar a mi Wallet</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ================= 2. PANTALLA PRINCIPAL (DASHBOARD) ================= -->
+    <div id="vista-dashboard" class="oculto">
+        <header class="cabecera">
+            <div class="logo"><strong>WALLET</strong> G+</div>
+            <nav class="menu-principal">
+                <a href="#" class="activo" id="tab-dashboard">MENU</a>
+                <a href="#" id="tab-mascota" class="texto-teal">🐱 Nv. <span id="nav-mascota-lvl">1</span></a>
+                <a href="#" id="tab-perfil">PERFIL</a>
+                <a href="#" id="btn-salir-menu" class="texto-gasto">SALIR</a>
+            </nav>
+            <div class="centrar-cabecera"></div> 
+        </header>
+
+        <main class="contenedor-principal">
+            
+            <section class="bienvenida">
+                <div class="textos-bienvenida">
+                    <h1 id="saludo-usuario">Hola, Usuario</h1>
+                    <p class="saldo-total">Saldo total: <strong id="saldo-total-pantalla">S/ 0.00</strong></p>
+                </div>
+                <button id="btn-abrir-gasto" class="boton-agregar">+ Agregar Movimiento</button>
+            </section>
+
+            <div class="columnas">
+                <div class="columna-izquierda">
+                    
+                    <!-- CUENTAS -->
+                    <section class="bloque">
+                        <div class="titulo-bloque">
+                            <h2>Mis Cuentas</h2>
+                            <button id="btn-gestionar-cuentas" class="boton-agregar boton-pequeno">Gestionar / Añadir</button>
+                        </div>
+                        <div class="contenedor-cuentas" id="lista-cuentas-ui">
+                            <!-- JS inyectará las tarjetas aquí -->
+                        </div>
+                    </section>
+
+                    <!-- MOVIMIENTOS -->
+                    <section class="bloque">
+                        <div class="titulo-bloque">
+                            <h2>Últimos movimientos</h2>
+                            <button id="btn-ver-movimientos" class="boton-transparente texto-teal">Ver todos &rarr;</button>
+                        </div>
+                        <div id="lista-movimientos-ui">
+                            <!-- JS inyectará los movimientos aquí -->
+                        </div>
+                    </section>
+                </div>
+
+                <div class="columna-derecha">
+                    <section class="bloque">
+                        <h2>Análisis de Gastos</h2>
+                        <p class="subtitulo-gasto">Progreso mensual</p><br>
+                        <div class="item-barra"><span class="etiqueta">Transporte</span><div class="fondo-barra"><div class="relleno-barra bg-alerta" style="width: 80%;"></div></div><span class="porcentaje-texto">80%</span></div>
+                        <div class="item-barra"><span class="etiqueta">Comidas</span><div class="fondo-barra"><div class="relleno-barra bg-alerta" style="width: 55%;"></div></div><span class="porcentaje-texto">55%</span></div>
+                        <div class="item-barra"><span class="etiqueta">Gustos</span><div class="fondo-barra"><div class="relleno-barra bg-alerta" style="width: 30%;"></div></div><span class="porcentaje-texto">30%</span></div>
+                        <div class="item-barra"><span class="etiqueta">Servicios</span><div class="fondo-barra"><div class="relleno-barra bg-alerta" style="width: 45%;"></div></div><span class="porcentaje-texto">45%</span></div>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ================= 3. PANTALLA DE MASCOTA ================= -->
+    <div id="vista-mascota" class="oculto">
+        <header class="cabecera">
+            <div class="logo"><strong>WALLET</strong> G+</div>
+            <nav class="menu-principal">
+                <a href="#" id="tab-dashboard-volver-mascota">MENU</a>
+                <a href="#" class="activo texto-teal">🐱 Nv. <span id="nav-mascota-lvl2">1</span></a>
+                <a href="#" id="tab-perfil2">PERFIL</a>
+                <a href="#" id="btn-salir-menu2" class="texto-gasto">SALIR</a>
+            </nav>
+            <div class="centrar-cabecera"></div> 
+        </header>
+        <main class="contenedor-principal">
+            <section class="bloque caja-centrada">
+                <h2>Tu Compañero de Ahorros</h2>
+                <div class="info-perfil-centrada">
+                    <div style="font-size: 6rem; margin: 20px 0;">🐱</div>
+                    <h3 id="mascota-nivel-ui">Nivel 1</h3>
+                    <p class="texto-sutil">¡Registra tus ingresos (+ S/) para ganar XP y subir de nivel!</p>
+                </div>
+                
+                <div style="text-align: left; width: 100%; margin-top: 20px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                        <strong>Progreso al siguiente nivel</strong>
+                        <span><strong id="mascota-xp-ui">0</strong> / <span id="mascota-meta-ui">1000</span> XP</span>
+                    </div>
+                    <div class="fondo-barra" style="height: 15px; border-radius: 10px; background-color: var(--fondo-app);">
+                        <div id="mascota-barra-ui" class="relleno-barra bg-teal" style="width: 0%; border-radius: 10px;"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- ================= 4. PANTALLA DE PERFIL ================= -->
+    <div id="vista-perfil" class="oculto">
+        <header class="cabecera">
+            <div class="logo"><strong>WALLET</strong> G+</div>
+            <nav class="menu-principal">
+                <a href="#" id="tab-dashboard-volver">MENU</a>
+                <a href="#" id="tab-mascota2" class="texto-teal">🐱 MASCOTA</a>
+                <a href="#" class="activo">PERFIL</a>
+            </nav>
+            <div class="centrar-cabecera"></div> 
+        </header>
+        <main class="contenedor-principal">
+            <section class="bloque caja-centrada">
+                <h2>Mi Perfil</h2>
+                <div class="info-perfil-centrada">
+                    <div class="avatar-perfil">A</div>
+                    <h3 id="perfil-nombre-ui">Nombre</h3>
+                    <p id="perfil-email-ui" class="texto-sutil">correo</p>
+                </div>
+                <button id="btn-cerrar-sesion" class="boton-agregar bg-alerta w-100">Cerrar Sesión</button>
+            </section>
+        </main>
+    </div>
+
+    <!-- ================= MODALES ================= -->
+    
+    <!-- Modal 1: Agregar Movimiento -->
+    <div id="modal-gasto" class="modal-overlay oculto">
+        <div class="modal-contenido bloque">
+            <div class="titulo-bloque">
+                <h2>Registrar Movimiento</h2>
+                <button class="btn-cerrar-modal" data-modal="modal-gasto">✖</button>
+            </div>
+            <form id="form-gasto">
+                <div class="grupo-input">
+                    <label>Tipo</label>
+                    <select id="gasto-tipo">
+                        <option value="gasto">Gasto (-)</option>
+                        <option value="ingreso">Ingreso (+)</option>
+                    </select>
+                </div>
+                <div class="grupo-input">
+                    <label>¿A qué cuenta afectará?</label>
+                    <select id="gasto-cuenta" required>
+                        <!-- JS inyectará las opciones de las cuentas aquí -->
+                    </select>
+                </div>
+                <div class="grupo-input">
+                    <label>Concepto</label>
+                    <input type="text" id="gasto-concepto" placeholder="Ej. Sueldo, Cine..." required>
+                </div>
+                <div class="grupo-input">
+                    <label>Categoría</label>
+                    <input type="text" id="gasto-categoria" placeholder="Ej. Alimentación" required>
+                </div>
+                <div class="grupo-input">
+                    <label>Monto (S/)</label>
+                    <input type="number" id="gasto-monto" step="0.01" required>
+                </div>
+                <button type="submit" class="boton-agregar w-100">Registrar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal 2: Gestionar Cuentas -->
+    <div id="modal-gestionar-cuentas" class="modal-overlay oculto">
+        <div class="modal-contenido bloque">
+            <div class="titulo-bloque">
+                <h2>Administrar Cuentas</h2>
+                <button class="btn-cerrar-modal" data-modal="modal-gestionar-cuentas">✖</button>
+            </div>
+            <div id="lista-cuentas-modal" class="lista-gestion"></div>
+            <button id="btn-abrir-nueva-cuenta" class="boton-agregar w-100">+ Añadir Nueva Cuenta</button>
+        </div>
+    </div>
+
+    <!-- Modal 3: Formulario Cuenta (Crear / Editar) -->
+    <div id="modal-form-cuenta" class="modal-overlay oculto">
+        <div class="modal-contenido bloque">
+            <div class="titulo-bloque">
+                <h2 id="titulo-form-cuenta">Nueva Cuenta</h2>
+                <button class="btn-cerrar-modal" data-modal="modal-form-cuenta">✖</button>
+            </div>
+            <form id="form-cuenta">
+                <input type="hidden" id="cuenta-id">
+                <div class="grupo-input">
+                    <label>Nombre de la Cuenta</label>
+                    <input type="text" id="cuenta-nombre" placeholder="Ej. BCP, Efectivo..." required>
+                </div>
+                <div class="grupo-input">
+                    <label>Saldo Actual (S/)</label>
+                    <input type="number" id="cuenta-saldo" step="0.01" required>
+                </div>
+                <button type="submit" class="boton-agregar w-100">Guardar Cuenta</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal 4: Historial de Movimientos -->
+    <div id="modal-historial" class="modal-overlay oculto">
+        <div class="modal-contenido bloque">
+            <div class="titulo-bloque">
+                <h2>Historial Completo</h2>
+                <button class="btn-cerrar-modal" data-modal="modal-historial">✖</button>
+            </div>
+            <div id="lista-historial-modal" class="lista-gestion" style="max-height: 400px; overflow-y: auto;"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
